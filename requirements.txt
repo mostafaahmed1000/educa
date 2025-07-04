@@ -24,3 +24,6 @@ typing_extensions==4.12.2
 tzdata==2025.1
 urllib3==1.26.20
 wrapt==1.17.2
+psycopg2==2.9.3
+uwsgi==2.0.20
+daphne==3.0.2
