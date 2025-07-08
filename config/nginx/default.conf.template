@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name www.educaproject.com educaproject.com;
+    error_log stderr warn;
+    access_log /dev/stdout main;
+    location / {
+    proxy_pass http://web:8000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location /static/ {
+        alias /code/educa/static/;
+    }
+    location /media/ {
+        alias /code/educa/media/;
+    }
+}

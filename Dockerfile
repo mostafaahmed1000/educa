@@ -10,3 +10,11 @@ COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
 COPY . /code/
+
+# Use PowerShell entrypoint (Windows-compatible)
+#COPY entrypoint.sh /code/
+#RUN chmod +x /code/entrypoint.sh
+
+# Expose port for Gunicorn
+EXPOSE 8000
+
