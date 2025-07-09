@@ -52,12 +52,4 @@ services:
     ports:
       - "80:80"
 
-  frontend:
-    build:
-      context: ./EduHub
-      dockerfile: Dockerfile.frontend
-    restart: always
-    ports:
-      - "3000:3000"
-    depends_on:
-      - web
+  
