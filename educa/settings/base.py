@@ -220,6 +220,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript access to CSRF token
 CSRF_USE_SESSIONS = False
+SECURE_SSL_REDIRECT = True
 
 ASGI_APPLICATION = "educa.asgi.application"
 

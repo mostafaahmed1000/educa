@@ -17,7 +17,11 @@ services:
       - ./data/cache:/data
 
   web:
-    build: .
+    build:
+      context: ./educa
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
     command: [ #"./wait-for-it.sh", "db:5432", "--",
           "gunicorn", "--bind", "0.0.0.0:8000", "educa.wsgi:application"]
     restart: always
@@ -47,3 +51,11 @@ services:
       - ./educa/media:/code/educa/media
     ports:
       - "80:80"
+
+  frontend:
+    build:
+      context: ./EduHub
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - "3000:3000"
