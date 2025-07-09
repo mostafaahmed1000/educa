@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "chat",
     "channels",
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -131,18 +132,25 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# AWS Settings
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'eu-north-1'  
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Static files (CSS, JavaScript, Images)
+STATICFILES_STORAGE = 'educa.storage_backends.StaticStorage'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/static/'
+
+# Media files (user uploaded)
+DEFAULT_FILE_STORAGE = 'educa.storage_backends.MediaStorage'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/media/'
 
 LOGIN_REDIRECT_URL = reverse_lazy("student_course_list")
 

@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name www.educaproject.com educaproject.com;
+    server_name 127.0.0.1;
     error_log stderr warn;
     access_log /dev/stdout main;
     location / {
@@ -11,9 +11,9 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     }
     location /static/ {
-        alias /code/educa/static/;
+        return 301 https://educa-891662393497.s3.eu-north-1.amazonaws.com/static/static$request_uri;
     }
     location /media/ {
-        alias /code/educa/media/;
+        return 301 https://educa-891662393497.s3.eu-north-1.amazonaws.com/media/media$request_uri;
     }
 }
