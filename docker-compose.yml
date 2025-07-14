@@ -34,8 +34,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - USE_S3=TRUE
-      - AWS_ACCESS_KEY_ID=AKIA47GZYMCMQZIKVAC
-      - AWS_SECRET_ACCESS_KEY=7HDaBpofqTzmRrXaJj3b23WPO5FROtOc2k2XgTba
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
       - AWS_STORAGE_BUCKET_NAME=educa-891662393497
     depends_on:
       #- db
@@ -51,5 +51,16 @@ services:
       - ./educa/media:/code/educa/media
     ports:
       - "80:80"
+    depends_on:
+      - web
+      - frontend
 
-  
+  frontend:
+    build:
+      context: ./EduHub
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
