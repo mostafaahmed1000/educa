@@ -34,8 +34,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - USE_S3=TRUE
-      - AWS_ACCESS_KEY_ID=
-      - AWS_SECRET_ACCESS_KEY=
+      - AWS_ACCESS_KEY_ID=AKIA47GZYMCMQZIKVAC
+      - AWS_SECRET_ACCESS_KEY=7HDaBpofqTzmRrXaJj3b23WPO5FROtOc2k2XgTba
       - AWS_STORAGE_BUCKET_NAME=educa-891662393497
     depends_on:
       #- db
