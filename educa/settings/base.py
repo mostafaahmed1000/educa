@@ -177,15 +177,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-# Update CORS settings
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
-
 CORS_EXPOSE_HEADERS = [
     "Content-Type",
     "X-CSRFToken",
@@ -213,14 +204,6 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-# Security settings
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript access to CSRF token
-CSRF_USE_SESSIONS = False
-SECURE_SSL_REDIRECT = True
 
 ASGI_APPLICATION = "educa.asgi.application"
 
