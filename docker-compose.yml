@@ -40,6 +40,11 @@ services:
     depends_on:
       #- db
       - cache
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health-check"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   nginx:
     image: nginx:1.23.1
@@ -66,4 +71,5 @@ services:
       - NEXT_PUBLIC_API_URL=http://web:8000/api
       - NEXT_PUBLIC_API_ENDPOINT=http://web:8000/api
     depends_on:
-      - web
+      - web:
+        condition: service_healthy
