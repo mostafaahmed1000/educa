@@ -17,8 +17,8 @@ server {
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
     
     # API routes
-    location /api/ {
-        proxy_pass http://web:8000/api/;
+    location / {
+        proxy_pass http://backend:8000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -35,16 +35,5 @@ server {
     location /media/ {
         add_header Cache-Control "public, max-age=31536000";
         return 301 https://educa-891662393497.s3.eu-north-1.amazonaws.com/media/media$request_uri;
-    }
-    
-    # Frontend routes
-    location / {
-        proxy_pass http://frontend:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_read_timeout 300s;
-        proxy_connect_timeout 75s;
     }
 }
