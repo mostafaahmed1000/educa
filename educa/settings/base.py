@@ -153,6 +153,7 @@ DEFAULT_FILE_STORAGE = 'educa.storage_backends.MediaStorage'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/media/'
 
 LOGIN_REDIRECT_URL = reverse_lazy("student_course_list")
+FORCE_SCRIPT_NAME = '/educa'
 
 CACHES = {
     "default": {
